@@ -1,3 +1,5 @@
+using YFinance.Core.Entities;
+
 namespace YFinance.Core.Interfaces;
 
 public interface IQuoteService
