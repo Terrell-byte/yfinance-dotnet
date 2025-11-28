@@ -6,4 +6,5 @@ public class Quote
     public decimal? ask { get; set; }
     public decimal? bid { get; set; }
     public decimal? open { get; set; }
+    public decimal? percentageChange { get; set; }
 }

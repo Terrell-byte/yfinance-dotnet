@@ -8,9 +8,9 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var httpClientFactory = new YahooHttpClientFactory();
-        var quoteService = new YahooQuoteService(httpClientFactory);
-        var quote = await quoteService.GetQuoteAsync("AAPL", CancellationToken.None);
+        var yahooClient = new YahooClient();
+        var quoteService = new QuoteService(yahooClient);
+        var quote = await quoteService.GetQuoteAsync("NVDA", CancellationToken.None);
         Console.WriteLine(JsonSerializer.Serialize(quote, new JsonSerializerOptions { WriteIndented = true }));
     }
 }

@@ -6,22 +6,22 @@ using YFinance.Yahoo;
 
 namespace YFinance.Yahoo.Services;
 
-public class YahooQuoteService : IQuoteService
+public class QuoteService : IQuoteService
 {
-    private readonly YahooHttpClientFactory _httpClientFactory;
+    private readonly YahooClient _yahooClient;
     
-    public YahooQuoteService(YahooHttpClientFactory httpClientFactory)
+    public QuoteService(YahooClient yahooClient)
     {
-        _httpClientFactory = httpClientFactory;
+        _yahooClient = yahooClient;
     }
     
     public async Task<Quote> GetQuoteAsync(string ticker, CancellationToken cancellationToken = default)
     {
-        var crumb = await _httpClientFactory.GetCrumbAsync(cancellationToken);
-        var httpClient = _httpClientFactory.GetClient();
+        var crumb = await _yahooClient.GetCrumbAsync(cancellationToken);
+        var httpClient = _yahooClient.GetClient();
         
         var response = await httpClient.GetAsync(
-            $"https://query1.finance.yahoo.com/v7/finance/quote?symbols={ticker}&fields=regularMarketOpen,ask,bid&crumb={crumb}",
+            $"https://query1.finance.yahoo.com/v7/finance/quote?symbols={ticker}&fields=regularMarketOpen,ask,bid,regularMarketChangePercent&crumb={crumb}",
             cancellationToken
         );
         response.EnsureSuccessStatusCode();
@@ -38,6 +38,7 @@ public class YahooQuoteService : IQuoteService
             open = quoteData.TryGetProperty("regularMarketOpen", out var o) && o.TryGetDecimal(out var openVal) ? openVal : null,
             ask = quoteData.TryGetProperty("ask", out var a) && a.TryGetDecimal(out var askVal) ? askVal : null,
             bid = quoteData.TryGetProperty("bid", out var b) && b.TryGetDecimal(out var bidVal) ? bidVal : null,
+            percentageChange = quoteData.TryGetProperty("regularMarketChangePercent", out var pc) && pc.TryGetDecimal(out var percentageChangeVal) ? percentageChangeVal : null,
         };
     }
 }

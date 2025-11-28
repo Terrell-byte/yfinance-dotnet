@@ -3,14 +3,14 @@ using System.Net.Http;
 
 namespace YFinance.Yahoo;
 
-public class YahooHttpClientFactory
+public class YahooClient
 {
     private readonly HttpClient _httpClient;
     private readonly CookieContainer _cookieContainer;
     private string? _cachedCrumb;
     private DateTime _crumbExpiry;
     
-    public YahooHttpClientFactory()
+    public YahooClient()
     {
         _cookieContainer = new CookieContainer();
         var handler = new HttpClientHandler
