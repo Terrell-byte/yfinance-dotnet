@@ -21,7 +21,7 @@ public class YahooQuoteService : IQuoteService
         var httpClient = _httpClientFactory.GetClient();
         
         var response = await httpClient.GetAsync(
-            $"https://query1.finance.yahoo.com/v7/finance/quote?symbols={ticker}&fields=regularMarketOpen,longName,ask,bid&crumb={crumb}",
+            $"https://query1.finance.yahoo.com/v7/finance/quote?symbols={ticker}&fields=regularMarketOpen,ask,bid&crumb={crumb}",
             cancellationToken
         );
         response.EnsureSuccessStatusCode();
@@ -35,7 +35,6 @@ public class YahooQuoteService : IQuoteService
         return new Quote()
         {
             ticker = quoteData.TryGetProperty("symbol", out var s) ? s.GetString() : ticker,
-            name = quoteData.TryGetProperty("longName", out var n) ? n.GetString() : null,
             open = quoteData.TryGetProperty("regularMarketOpen", out var o) && o.TryGetDecimal(out var openVal) ? openVal : null,
             ask = quoteData.TryGetProperty("ask", out var a) && a.TryGetDecimal(out var askVal) ? askVal : null,
             bid = quoteData.TryGetProperty("bid", out var b) && b.TryGetDecimal(out var bidVal) ? bidVal : null,
