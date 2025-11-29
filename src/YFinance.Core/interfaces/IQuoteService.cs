@@ -3,5 +3,5 @@ namespace YFinance.Core.Interfaces;
 
 public interface IQuoteService
 {
-    Task<Quote> GetQuoteAsync(string ticker, CancellationToken ct = default);
+    Task<Quote[]> GetQuoteAsync(string[] tickers, CancellationToken ct = default);
 }
