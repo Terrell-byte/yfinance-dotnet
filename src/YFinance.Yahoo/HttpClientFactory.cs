@@ -3,6 +3,7 @@ using System.Net.Http;
 
 namespace YFinance.Yahoo;
 
+// Make singleton
 public class YahooClient
 {
     private readonly HttpClient _httpClient;

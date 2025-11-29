@@ -9,8 +9,8 @@ public class Program
     public static async Task Main(string[] args)
     {
         var yahooClient = new YahooClient();
-        var quoteService = new QuoteService(yahooClient);
-        var quote = await quoteService.GetQuoteAsync("NVDA", CancellationToken.None);
-        Console.WriteLine(JsonSerializer.Serialize(quote, new JsonSerializerOptions { WriteIndented = true }));
+        var infoService = new InfoService(yahooClient);
+        var info = await infoService.GetInfoAsync("NVDA", CancellationToken.None);
+        Console.WriteLine(JsonSerializer.Serialize(info, new JsonSerializerOptions { WriteIndented = true }));
     }
 }
