@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http;
-using YFinance.Core.Interfaces;
+using YFinance.Yahoo.Interfaces;
 
 namespace YFinance.Yahoo;
 

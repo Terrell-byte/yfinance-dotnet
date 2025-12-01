@@ -1,7 +1,9 @@
-using YFinance.Core.Entities;
-namespace YFinance.Core.Interfaces;
+using YFinance.Yahoo.Entities;
+
+namespace YFinance.Yahoo.Interfaces;
 
 public interface IQuoteService
 {
     Task<Quote[]> GetQuoteAsync(string[] tickers, CancellationToken ct = default);
 }
+

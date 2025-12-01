@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
-using YFinance.Core.Entities;
-using YFinance.Core.Interfaces;
+using YFinance.Yahoo.Entities;
+using YFinance.Yahoo.Interfaces;
 
 namespace YFinance.Yahoo.Services;
 

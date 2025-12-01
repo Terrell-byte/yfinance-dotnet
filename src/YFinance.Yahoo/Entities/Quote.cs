@@ -1,4 +1,4 @@
-namespace YFinance.Core.Entities;
+namespace YFinance.Yahoo.Entities;
 
 public class Quote
 {
@@ -8,3 +8,4 @@ public class Quote
     public decimal? open { get; set; }
     public decimal? percentageChange { get; set; }
 }
+

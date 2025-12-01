@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\YFinance.Core\YFinance.Core.csproj" />
     <ProjectReference Include="..\YFinance.Yahoo\YFinance.Yahoo.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-namespace YFinance.Core.Entities;
+namespace YFinance.Yahoo.Entities;
 
 public class HistoryPoint
 {
@@ -11,9 +11,9 @@ public class HistoryPoint
     public long? volume { get; set; }
 }
 
-
 public class History
 {
     public string? ticker { get; set; }
     public List<HistoryPoint> points { get; set; } = new();
 }
+

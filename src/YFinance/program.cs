@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net;
 using YFinance.Yahoo;
 using YFinance.Yahoo.Services;
-using YFinance.Core.Interfaces;
+using YFinance.Yahoo.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 public class Program
