@@ -1,10 +1,10 @@
 using System.Net;
 using System.Net.Http;
+using YFinance.Core.Interfaces;
 
 namespace YFinance.Yahoo;
 
-// Make singleton
-public class YahooClient
+public class YahooClient : IYahooClient
 {
     private readonly HttpClient _httpClient;
     private readonly CookieContainer _cookieContainer;

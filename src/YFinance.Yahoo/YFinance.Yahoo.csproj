@@ -8,6 +8,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    
+    <!-- NuGet Package Metadata -->
+    <PackageId>YFinance.Yahoo</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Terrell-byte</Authors>
+    <Description>Unofficial C# client for Yahoo Finance (quotes, info, history). Provides Yahoo Finance API integration with dependency injection support.</Description>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Terrell-byte/yfinance-dotnet</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Terrell-byte/yfinance-dotnet</PackageProjectUrl>
+    <PackageTags>yahoo;finance;quotes;info;history;stock;market</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
 </Project>

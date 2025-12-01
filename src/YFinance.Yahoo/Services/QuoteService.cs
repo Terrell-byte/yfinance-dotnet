@@ -2,18 +2,14 @@ using System.Net.Http;
 using System.Text.Json;
 using YFinance.Core.Entities;
 using YFinance.Core.Interfaces;
-using YFinance.Yahoo;
 
 namespace YFinance.Yahoo.Services;
 
 public class QuoteService : IQuoteService
 {
-    private readonly YahooClient _yahooClient;
-    
-    public QuoteService(YahooClient yahooClient)
-    {
-        _yahooClient = yahooClient;
-    }
+    private readonly IYahooClient _yahooClient;
+    public QuoteService(IYahooClient yahooClient) => _yahooClient = yahooClient;
+
     
     public async Task<Quote[]> GetQuoteAsync(string[] tickers, CancellationToken ct = default)
     {

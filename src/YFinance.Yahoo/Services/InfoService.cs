@@ -2,19 +2,14 @@ using System.Net.Http;
 using System.Text.Json;
 using YFinance.Core.Entities;
 using YFinance.Core.Interfaces;
-using YFinance.Yahoo;
 
 namespace YFinance.Yahoo.Services;
 
 public class InfoService : IInfoService
 {
-    private readonly YahooClient _yahooClient;
-
-    public InfoService(YahooClient yahooClient)
-    {
-        _yahooClient = yahooClient;
-    }
-
+    private readonly IYahooClient _yahooClient;
+    public InfoService(IYahooClient yahooClient) => _yahooClient = yahooClient;
+    
     public async Task<Info[]> GetInfoAsync(string[] tickers, CancellationToken ct = default)
     {
         var crumb = await _yahooClient.GetCrumbAsync(ct);
