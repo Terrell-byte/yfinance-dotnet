@@ -12,15 +12,10 @@ public class Program
     {
         var services = new ServiceCollection();
         services.AddSingleton<IYahooClient, YahooClient>();
-        services.AddSingleton<IInfoService, InfoService>();
-        services.AddSingleton<IQuoteService, QuoteService>();
+        services.AddSingleton<IMarketService, MarketService>();
         var serviceProvider = services.BuildServiceProvider();
-        var yahooClient = serviceProvider.GetRequiredService<IYahooClient>();
-        var infoService = serviceProvider.GetRequiredService<IInfoService>();
-        var quoteService = serviceProvider.GetRequiredService<IQuoteService>();
-        var info = await infoService.GetInfoAsync(new[] { "NVDA", "AAPL", "GME" }, CancellationToken.None);
-        var quote = await quoteService.GetQuoteAsync(new[] { "NVDA", "AAPL", "GME" }, CancellationToken.None);
-        Console.WriteLine(JsonSerializer.Serialize(info, new JsonSerializerOptions { WriteIndented = true }));
-        Console.WriteLine(JsonSerializer.Serialize(quote, new JsonSerializerOptions { WriteIndented = true }));
+        var marketService = serviceProvider.GetRequiredService<IMarketService>();
+        var allStocks = await marketService.GetAllUSStocksAsync(4658, CancellationToken.None);
+        Console.WriteLine(JsonSerializer.Serialize(allStocks, new JsonSerializerOptions { WriteIndented = true }));
     }
 }
