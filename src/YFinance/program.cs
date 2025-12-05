@@ -12,10 +12,6 @@ public class Program
     {
         var services = new ServiceCollection();
         services.AddSingleton<IYahooClient, YahooClient>();
-        services.AddSingleton<IMarketService, MarketService>();
         var serviceProvider = services.BuildServiceProvider();
-        var marketService = serviceProvider.GetRequiredService<IMarketService>();
-        var allStocks = await marketService.GetAllUSStocksAsync(null, CancellationToken.None);
-        Console.WriteLine(JsonSerializer.Serialize(allStocks, new JsonSerializerOptions { WriteIndented = true }));
     }
 }
