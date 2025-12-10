@@ -16,7 +16,7 @@
     
     <!-- NuGet Package Metadata -->
     <PackageId>YFinance.Yahoo</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
     <Authors>Terrell-byte</Authors>
     <Description>Unofficial C# client for Yahoo Finance (quotes, info, history). Provides Yahoo Finance API integration with dependency injection support. All entities, interfaces, and implementations are included in a single package.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

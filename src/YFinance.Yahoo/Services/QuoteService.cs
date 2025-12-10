@@ -46,7 +46,7 @@ public class QuoteService : IQuoteService
         var httpClient = _yahooClient.GetClient();
 
         var response = await httpClient.GetAsync(
-            $"https://query1.finance.yahoo.com/v7/finance/quote?symbols={string.Join(",", tickers)}&fields=regularMarketOpen,longName,ask,bid,regularMarketChangePercent&crumb={crumb}",
+            $"https://query1.finance.yahoo.com/v7/finance/quote?symbols={string.Join(",", tickers)}&fields=regularMarketOpen,longName,ask,bid,regularMarketChangePercent,regularMarketPrice&crumb={crumb}",
             cancellationToken: ct);
 
         response.EnsureSuccessStatusCode();
@@ -59,6 +59,7 @@ public class QuoteService : IQuoteService
             ticker = item.TryGetProperty("symbol", out var s) ? s.GetString() : null,
             name = item.TryGetProperty("longName", out var n) ? n.GetString() : null,
             open = item.TryGetProperty("regularMarketOpen", out var o) ? o.GetDecimal() : null,
+            price = item.TryGetProperty("regularMarketPrice", out var p) ? p.GetDecimal() : null,
             ask = item.TryGetProperty("ask", out var a) ? a.GetDecimal() : null,
             bid = item.TryGetProperty("bid", out var b) ? b.GetDecimal() : null,
             percentageChange = item.TryGetProperty("regularMarketChangePercent", out var pc) ? pc.GetDecimal() : null,
