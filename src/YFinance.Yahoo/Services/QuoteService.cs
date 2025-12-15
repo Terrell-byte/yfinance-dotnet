@@ -4,42 +4,11 @@ using YFinance.Yahoo.Entities;
 using YFinance.Yahoo.Interfaces;
 
 namespace YFinance.Yahoo.Services;
-
-/// <summary>
-/// Service implementation for retrieving real-time stock quotes from Yahoo Finance.
-/// Provides current market data including prices, bid/ask spreads, and percentage changes.
-/// </summary>
 public class QuoteService : IQuoteService
 {
     private readonly IYahooClient _yahooClient;
-    
-    /// <summary>
-    /// Initializes a new instance of the QuoteService class.
-    /// </summary>
-    /// <param name="yahooClient">The Yahoo Finance client used for making API requests.</param>
     public QuoteService(IYahooClient yahooClient) => _yahooClient = yahooClient;
 
-    /// <summary>
-    /// Retrieves current market quotes for the specified stock tickers.
-    /// Returns real-time pricing data including bid, ask, open price, and percentage change.
-    /// </summary>
-    /// <param name="tickers">Array of stock ticker symbols (e.g., "AAPL", "MSFT", "GOOGL").</param>
-    /// <param name="ct">Cancellation token to cancel the operation.</param>
-    /// <returns>
-    /// An array of <see cref="Quote"/> objects containing current market data for each ticker.
-    /// The array may contain fewer items than requested if some tickers are invalid or not found.
-    /// </returns>
-    /// <exception cref="HttpRequestException">Thrown when the API request fails or returns an error status code.</exception>
-    /// <example>
-    /// <code>
-    /// var quoteService = serviceProvider.GetRequiredService&lt;IQuoteService&gt;();
-    /// var quotes = await quoteService.GetQuoteAsync(new[] { "AAPL", "MSFT" });
-    /// foreach (var quote in quotes)
-    /// {
-    ///     Console.WriteLine($"{quote.ticker}: ${quote.ask} (Change: {quote.percentageChange:P})");
-    /// }
-    /// </code>
-    /// </example>
     public async Task<Quote[]> GetQuoteAsync(string[] tickers, CancellationToken ct = default)
     {
         var crumb = await _yahooClient.GetCrumbAsync(ct);

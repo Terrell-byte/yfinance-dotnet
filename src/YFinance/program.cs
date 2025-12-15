@@ -12,17 +12,33 @@ public class Program
     {
         var services = new ServiceCollection();
         services.AddSingleton<IYahooClient, YahooClient>();
-        services.AddSingleton<IQuoteService, QuoteService>();
+        services.AddSingleton<ISectorService, SectorService>();
         var serviceProvider = services.BuildServiceProvider();
-        // lets test a price on a stock
-        var quoteService = serviceProvider.GetRequiredService<IQuoteService>();
-        var quotes = await quoteService.GetQuoteAsync(new[] { "NVO" });
-        Console.WriteLine(quotes[0].ask);
-        Console.WriteLine(quotes[0].bid);
-        Console.WriteLine(quotes[0].price);
-        Console.WriteLine(quotes[0].open);
-        Console.WriteLine(quotes[0].percentageChange);
-        Console.WriteLine(quotes[0].name);
-        Console.WriteLine(quotes[0].ticker);
+        
+        // Test the SectorService
+        var sectorService = serviceProvider.GetRequiredService<ISectorService>();
+        var sectors = await sectorService.GetSectorsAsync(new[] 
+        { 
+            "Technology", 
+            "Financial Services",
+            "Consumer Cyclical",
+            "Communication Services",
+            "Healthcare",
+            "Industrials",
+            "Consumer Defensive",
+            "Energy",
+            "Basic Materials",
+            "Real Estate",
+            "Utilities",
+        });
+        
+        foreach (var sector in sectors)
+        {
+            Console.WriteLine($"Sector: {sector.name}");
+            Console.WriteLine($"  Companies: {sector.companyCount}");
+            Console.WriteLine($"  Daily Return: {sector.dailyReturn:P2}");
+            Console.WriteLine($"  Annual Return: {sector.annualReturn:P2}");
+            Console.WriteLine();
+        }
     }
 }
