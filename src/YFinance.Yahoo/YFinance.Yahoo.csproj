@@ -3,6 +3,7 @@
   <ItemGroup>
     <!-- DI package for users who want to use dependency injection -->
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.59" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -11,19 +11,20 @@ public class SectorService : ISectorService
 
     public SectorService(IYahooClient yahooClient) => _yahooClient = yahooClient;
 
-    /// <summary>
-    ///     Valid sectors: 
-    ///     "Technology", 
-    ///     "Financial Services",
-    ///     "Consumer Cyclical",
-    ///     "Communication Services",
-    ///     "Healthcare",
-    ///     "Industrials",
-    ///     "Consumer Defensive",
-    ///     "Energy",
-    ///     "Basic Materials",
-    ///     "Real Estate",
-    ///     "Utilities",
+/// <summary>
+/// Valid sectors:
+/// "Technology",
+/// "Financial Services",
+/// "Consumer Cyclical",
+/// "Communication Services",
+/// "Healthcare",
+/// "Industrials",
+/// "Consumer Defensive",
+/// "Energy",
+/// "Basic Materials",
+/// "Real Estate",
+/// "Utilities"
+/// </summary>
     public async Task<Sector[]> GetSectorsAsync(string[] sectors, CancellationToken ct = default)
     {
         var crumb = await _yahooClient.GetCrumbAsync(ct);
